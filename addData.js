@@ -1,6 +1,6 @@
 const { faker } = require("@faker-js/faker");
 const { MongoClient } = require("mongodb");
-const uri = "mongodb+srv://JtCqGymTW0vlPTIQ:urajvwgRuh89HUOq@cluster0.vnqxc.mongodb.net/?retryWrites=true&w=majority";
+const uri = "";
 const client = new MongoClient(uri);
 
 const runnn = async () => {
