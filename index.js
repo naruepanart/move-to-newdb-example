@@ -3,22 +3,20 @@ const uri = "";
 const client = new MongoClient(uri);
 
 async function run() {
-  console.time("TimeTest");
+  console.time("time use");
 
-  console.log("sampleDB => users...");
-  const databaseOld = await client.db("sampleDB");
-  const usersOld = await databaseOld.collection("users");
+  const oldDatabase = await client.db("sample-1");
+  const oldCollection = await oldDatabase.collection("users");
 
-  console.log("sampleDB2 => users...");
-  const databaseNew = await client.db("sampleDB2");
-  const usersNew = await databaseNew.collection("users");
+  const newDatabase = await client.db("sample-2");
+  const newCollection = await newDatabase.collection("users");
 
   let page;
   let limit = 5000;
   let skip;
 
-  const round = (await usersOld.countDocuments()) / limit;
-  const totalRound = Math.ceil(round);
+  const count = await oldCollection.countDocuments();
+  const totalRound = Math.ceil(count / limit);
   console.log(`total : ${totalRound} round`);
 
   for (let index = 1; index <= totalRound; index++) {
@@ -27,12 +25,19 @@ async function run() {
     page = index;
     skip = (page - 1) * limit;
 
-    const resUsersOld = await usersOld.find().limit(limit).skip(skip).toArray();
+    const resoldCollection = await oldCollection
+      .find()
+      .limit(limit)
+      .skip(skip)
+      .toArray();
 
     const options = { ordered: true };
-    await usersNew.insertMany(resUsersOld, options);
+    await newCollection.insertMany(resoldCollection, options);
+
+    // Wait for 1 minute before processing the next chunk
+    // await new Promise((resolve) => setTimeout(resolve, 60000));
   }
 
-  console.timeEnd("TimeTest");
+  console.timeEnd("time use");
 }
 run();
