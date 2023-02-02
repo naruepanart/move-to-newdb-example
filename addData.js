@@ -4,11 +4,10 @@ const uri = "";
 const client = new MongoClient(uri);
 
 const runnn = async () => {
-  console.time("TimeTest");
+  console.time("time use");
 
-  console.log("sampleDB => users...");
-  const sampleDB = client.db("sampleDB");
-  const usersCol = sampleDB.collection("users");
+  const oldDatabase = await client.db("sample-1");
+  const oldCollection = await oldDatabase.collection("users");
 
   for (let index = 0; index < 100; index++) {
     setInterval(() => {
@@ -21,11 +20,11 @@ const runnn = async () => {
         birthdate: faker.date.birthdate(),
         registeredAt: faker.date.past(),
       };
-      usersCol.insertOne(data);
-    }, 1000);
+      oldCollection.insertOne(data);
+    }, 10000);
   }
 
-  console.timeEnd("TimeTest");
+  console.timeEnd("time use");
 };
 
 runnn();
