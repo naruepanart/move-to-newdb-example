@@ -1,2 +1,2 @@
-# move-to-newdb-example
+# move-database-example
  
