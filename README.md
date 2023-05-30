@@ -15,7 +15,7 @@ npm install mongodb-mover
 Here's how you can use the `moveDatabase` function:
 
 ```javascript
-const moveDatabase = require("./moveDatabase");
+const moveDatabase = require("mongodb-mover");
 
 const sourceUrl = "mongodb://localhost:27017/source";
 const destinationUrl = "mongodb://localhost:27017/destination";
