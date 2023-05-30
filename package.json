@@ -1,15 +1,27 @@
 {
   "name": "mongodb-mover",
   "version": "1.0.0",
-  "description": "",
+  "description": "A utility for moving MongoDB databases",
   "main": "moveDatabase.js",
   "scripts": {
-    "start": "node moveDatabase.js",
-    "dev": "nodemon moveDatabase.js"
+    "dev": "node example.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mongodb",
+    "database",
+    "migration",
+    "utility"
+  ],
+  "author": "https://github.com/naruepanart",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naruepanart/mongodb-mover.git"
+  },
+  "bugs": {
+    "url": "https://github.com/naruepanart/mongodb-mover/issues"
+  },
+  "homepage": "https://github.com/naruepanart/mongodb-mover#readme",
   "dependencies": {
     "mongodb": "^4.12.0"
   },
